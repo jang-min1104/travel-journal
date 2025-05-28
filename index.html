@@ -252,55 +252,39 @@
   </footer>
 
   <script>
-  // 댓글 기능
-  const form = document.getElementById('commentForm');
-  const commentList = document.getElementById('commentList');
+    // 댓글 기능
+    const form = document.getElementById('commentForm');
+    const commentList = document.getElementById('commentList');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = document.getElementById('username').value;
-    const text = document.getElementById('commentText').value;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('username').value;
+      const text = document.getElementById('commentText').value;
 
-    const comment = document.createElement('div');
-    comment.className = 'comment';
-    comment.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      comment.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
 
-    commentList.prepend(comment);
-    form.reset();
-  });
+      commentList.prepend(comment);
+      form.reset();
+    });
 
-  // 슬라이더 기능 + 자동 넘김
-  const track = document.querySelector('.gallery-track');
-  const prevBtn = document.querySelector('.slider-button.prev');
-  const nextBtn = document.querySelector('.slider-button.next');
-  let scrollAmount = 0;
-  const slideWidth = 260; // 각 슬라이드 너비 + 여백
-  const maxScroll = track.scrollWidth - track.clientWidth;
+    // 슬라이더 기능
+    const track = document.querySelector('.gallery-track');
+    const prevBtn = document.querySelector('.slider-button.prev');
+    const nextBtn = document.querySelector('.slider-button.next');
+    let scrollAmount = 0;
+    const slideWidth = 260; // 각 슬라이드 너비 + 여백
 
-  // 수동 이전 버튼
-  prevBtn.addEventListener('click', () => {
-    scrollAmount = Math.max(0, scrollAmount - slideWidth);
-    track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  });
+    prevBtn.addEventListener('click', () => {
+      scrollAmount -= slideWidth;
+      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    });
 
-  // 수동 다음 버튼
-  nextBtn.addEventListener('click', () => {
-    scrollAmount = Math.min(maxScroll, scrollAmount + slideWidth);
-    track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  });
-
-  // 자동 슬라이드
-  function autoSlide() {
-    scrollAmount += slideWidth;
-    if (scrollAmount > maxScroll) {
-      scrollAmount = 0;
-    }
-    track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-  }
-
-  // 3초 간격으로 자동 이동
-  setInterval(autoSlide, 3000);
-</script>
-
+    nextBtn.addEventListener('click', () => {
+      scrollAmount += slideWidth;
+      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
