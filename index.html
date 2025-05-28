@@ -2,284 +2,244 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>여행일기 – 송정편</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>송정 여행 홈페이지</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fdfdfd;
+      font-family: '맑은 고딕', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
       color: #333;
       line-height: 1.6;
     }
-
-    header {
-      background: #2b7a78;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
     nav {
-      background: #def2f1;
-      padding: 0.5rem 1rem;
+      background: #005fa3;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
     nav ul {
+      margin: 0;
+      padding: 0.5em 1em;
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       justify-content: center;
-      margin: 0;
-      padding: 0;
+      gap: 1.5em;
     }
-
-    nav a {
+    nav ul li a {
+      color: white;
       text-decoration: none;
-      color: #17252a;
-      font-weight: bold;
+      font-weight: 600;
+      padding: 0.5em 0.7em;
+      border-radius: 4px;
+      transition: background 0.3s;
     }
-
+    nav ul li a:hover {
+      background: #007acc;
+    }
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
     main {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 0 1em;
     }
-
     section {
-      margin-bottom: 3rem;
-    }
-
-    h2 {
-      border-bottom: 2px solid #3aafa9;
-      padding-bottom: 0.5rem;
-      color: #2b7a78;
-    }
-
-    ul {
-      padding-left: 1.5rem;
-    }
-
-    /* 갤러리 스타일 */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 12px;
-      padding: 10px 0;
-    }
-
-    .gallery-grid figure {
-      margin: 0;
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 8px;
-    }
-
-    .gallery-grid img {
-      width: 100%;
-      height: 130px;
-      object-fit: cover;
+      margin-bottom: 3em;
+      background: white;
+      padding: 1.5em 2em;
       border-radius: 8px;
-      margin-bottom: 6px;
-      flex-shrink: 0;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
-
-    .gallery-grid figcaption {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.2;
+    h2 {
+      color: #007acc;
+      margin-bottom: 0.8em;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 0.2em;
     }
-
-    form {
+    ul {
+      padding-left: 1.2em;
+    }
+    a.download-link {
+      display: inline-block;
+      background: #007acc;
+      color: white;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    a.download-link:hover {
+      background: #005fa3;
+    }
+    .gallery-wrapper {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      background: white;
+    }
+    .gallery-slider {
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      transition: transform 0.5s ease;
+      scroll-behavior: smooth;
     }
-
-    input, textarea {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+    figure {
+      min-width: 100%;
+      margin: 0;
+      overflow: hidden;
     }
-
-    button {
-      padding: 0.5rem 1rem;
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+    figcaption {
+      padding: 1em;
       font-size: 1rem;
-      background: #3aafa9;
-      color: white;
+      color: #555;
+      line-height: 1.4;
+      min-height: 90px;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment {
-      margin-top: 1rem;
-      padding: 0.5rem;
-      border-left: 4px solid #3aafa9;
-      background: #f1f1f1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #2b7a78;
       color: white;
+      font-size: 2em;
+      width: 40px;
+      height: 60px;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 4px;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .slider-btn:hover {
+      background: rgba(0,0,0,0.6);
+    }
+    .slider-btn.left {
+      left: 0.5em;
+    }
+    .slider-btn.right {
+      right: 0.5em;
+    }
+    @media (max-width: 600px) {
+      figcaption {
+        font-size: 0.9rem;
+        padding: 0.8em;
+        min-height: auto;
+      }
+      .slider-btn {
+        font-size: 1.5em;
+        width: 30px;
+        height: 45px;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>여행일기: 송정편</h1>
-    <p>바다, 철길, 그리고 추억이 있는 곳</p>
-  </header>
-
   <nav>
     <ul>
-      <li><a href="#course">여행 코스</a></li>
-      <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#intro">소개글</a></li>
+      <li><a href="#travel-course">여행 코스</a></li>
+      <li><a href="#travel-tips">여행 팁</a></li>
+      <li><a href="#ppt-download">PPT 다운로드</a></li>
+      <li><a href="#gallery">여행 일기</a></li>
       <li><a href="#map">지도</a></li>
-      <li><a href="#tips">여행 팁</a></li>
-      <li><a href="#comments">댓글</a></li>
-      <li><a href="#download">다운로드</a></li>
     </ul>
   </nav>
 
+  <header>
+    <h1>송정 여행 홈페이지</h1>
+  </header>
+
   <main>
-    <section id="course">
+    <section id="intro">
+      <h2>홈페이지 소개글</h2>
+      <p>이 홈페이지는 부산 송정 지역을 방문한 경험을 바탕으로 만든 여행 기록 공간입니다. 송정의 아름다운 명소들과 여행 팁, 그리고 여행 코스를 소개하며 직접 찍은 사진과 여행 일기를 통해 여러분께 송정의 매력을 전하고자 합니다.</p>
+    </section>
+
+    <section id="travel-course">
       <h2>여행 코스</h2>
       <ul>
-        <li>📍 송정해수욕장</li>
-        <li>🚶‍♀️ 송정 철길</li>
-        <li>🍜 맛집 탐방</li>
-        <li>⛩️ 송정 해동용궁사</li>
+        <li>송정역 방문 및 해변 산책</li>
+        <li>해동용궁사 탐방</li>
+        <li>문토스트 본점 방문</li>
+        <li>송정해수욕장 주변 카페 및 맛집 탐방</li>
       </ul>
+    </section>
+
+    <section id="travel-tips">
+      <h2>여행 팁</h2>
+      <ul>
+        <li>해동용궁사 방문 시, 버스나 자차 이용을 권장합니다. 도보는 오르막과 더위 때문에 매우 힘듭니다.</li>
+        <li>송정역은 아침 일찍 방문하면 한적한 풍경을 즐길 수 있습니다.</li>
+        <li>해변 일출 사진을 찍고 싶다면 새벽 7시경 방문을 추천합니다.</li>
+        <li>문토스트는 맛과 사장님의 친절함으로 유명하니 꼭 들러보세요.</li>
+      </ul>
+    </section>
+
+    <section id="ppt-download">
+      <h2>PPT 다운로드</h2>
+      <a href="files/songjeong_trip_presentation.pptx" class="download-link" download>여행 발표 PPT 다운로드</a>
     </section>
 
     <section id="gallery">
-      <h2>갤러리</h2>
-      <div class="gallery-grid">
-        <figure>
-          <img src="images/songjeong1.jpg" alt="송정역" />
-          <figcaption>경성대에서 지하철을 타고 버스로 환승한 뒤 3분 정도 걸으면 나오는 '송정역'이다. 아침에 가서 그런지 사람이 거의 없었다. 일찍 온 사람들도 기차역 오픈시간을 기다리며 시간을 보내고 있는 모습을 볼 수 있었다. 기차도 탑승해 보고 싶었지만 오픈시간까지 많이 기다려야해서 어쩔 수 없이 다른 장소로 발걸음을 옮겼다. 사실 날씨가 별로 좋지 않았다. 흠.....</figcaption>
-        
-    </section></figure>
-        <figure>
-          <img src="images/songjeong2.jpg" alt="송정역 기차 사진" />
-          <figcaption>기차도 탑승해 보고 싶었지만 오픈시간까지 많이 기다려야해서 어쩔 수 없이 다른 장소로 발걸음을 옮겼다. 이 글을 보시는 여러분은 꼭 타보시길 바랍니다. 근데 아마 1회 탑승권이 8,000원인가 하고 2회 탑승권이 12,000이었던 것 같습니다. 음 근데 이 가격이면 문토스트가서 배터지게 먹을 듯...근데 타본 사람들의 말을 들어보면 해변열차 안에서 보는 풍경이 되게 이쁘다고 하네요. </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong3.jpg" alt="바다로 달려가는 모습" />
-          <figcaption>바다로 달려가는 이가영 학우님과 저의 모습입니다. 솔직히 날씨만 좋았으면 진짜 이쁘게 나올 수 있었는데 아깝습니다. 하늘을 이쁘게 합성 해볼까 생각을 했지만 티가 날 것 같아서 하지 않음..</figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong4.jpg" alt="일출 때 찍은 윤슬" />
-          <figcaption>이건 너무 잘 찍었죠..? 아침 7시에 가면 떠오르는 햇빛가 함께 멋진 사진을 건질 수 있답니다. 여러분 MT 갔을 때 새벽에 나와서 한 번 찍는 걸 추천드립니다.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong5.jpg" alt="송정해수욕장에서 산책하는 사람들" />
-          <figcaption>해변에서 산책이나 런닝 그리고 서핑하는 사람들이 너무나 보기 좋았습니다. 여유있는 모습과 자신을 계발시킬 수 있다는 시간이 있다는 것이 부러웠기 때문이죠..여러분도 자신에게 힐링과 여유를 주며 취미생활을 즐길 수 있는 사람이 되었으면 좋겠네요.  </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong6.jpg" alt="해동용궁사 가는 길" />
-          <figcaption>해동용궁사를 절대 걸어서 가지마세요. 너무 힘듭니다. 오르막이 너무 많고 특히나 날씨가 습했던지라 너무나도 더웠습니다. 자차 있으신 분들이 있다면 추천드립니다. 자차가 없다면 꼭 버스를 타는 것을 추천드리는데, 그래도 좀 걸어야 합니다. 그래고 고생 끝에 간 해동용궁사는 좋았답니다. </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong7.jpg" alt="해동용궁사에서 본 절경" />
-          <figcaption>힘들게 올라 온 뒤에 본 풍경이라 그런지 매우 아름다웠습니다. '바다 위에 있는 절 ' 이거 정말 큰 메리트라고 생각을 합니다. 보통 절은 산 속에 있는데 바다와 붙어있어서 그런지 신선한 경험이었습니다. 학기 중 여유가 되실 때 한 번쯤 방문해보시길 바랍니다. 부모님과 함께 간다면 더욱 좋을 것 같습니다. </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong8.jpg" alt="해동용궁사 입구" />
-          <figcaption>기념품과 음식을 파는 곳을 지나면 제일 먼저 보이는 것은 동물불상 입니다. </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong9.jpg" alt="해동용궁사 입구2" />
-          <figcaption>해동용궁사를 가면 사진에 보이는 곳으로 가는 곳이 있고 맞은 편에도 가는 곳이 있습니다. 어느쪽으로 가도 다 이어져 있어서 상관은 없지만 사진에 보이는 곳으로 가는 것을 추천드립니다. 맞은 편 입구로 가면 해동용궁사를 나갈 때 많은 계단을 올라가야 합니다...</figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong10.jpg" alt="해동용궁사 안에 있는 불상" />
-          <figcaption>해동용궁사 내부 불상입니다. 이 불상이 있는 곳을 지나면 바다와 가까이서 찍을 수 있는 해동용궁사만의 장점인 바다 사진 존이 있습니다. 많은 관광객 분들이 여기서 찍으시는데 여기서 찍으면 해동용궁사도 보이고 바다도 보여서 멋진 사진을 건질 수 있습니다.  </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong11.jpg" alt="해동용궁사에서 볼 수 있는 풍경" />
-          <figcaption>해동용궁사 주변 풍경입니다. 멋있는 것 같습니다.</figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong12.jpg" alt="일출을 보고 먹은 국밥" />
-          <figcaption>일출 후 먹은 국밥 한 그릇을 먹었는데.. 이 집은 추천하지 않습니다. 이 집이 궁금하신 분들은 따로 연락을 주시면 가르쳐 드리겠습니다. </figcaption>
-        </figure>
-        <figure>
-          <img src="images/songjeong13.jpg" alt="점심에 먹은 문토스트" />
-          <figcaption>사장님이 매우 친절하십니다. 오픈 시간이 아니었지만 혹시나 해서 찾아갔는데 영업중이라 하셔서 사장님과 재미있는 이야기도 나누고 맛있는 토스트와 주스를 마시고 왔습니다. 문토스트 송정 본점이 유명한 까닭을 알게 되는 시간이었습니다. </figcaption>
-        </figure>
+      <h2>여행 일기</h2>
+      <div class="gallery-wrapper">
+        <button class="slider-btn left" onclick="slideGallery(-1)">‹</button>
+        <div class="gallery-slider" id="gallerySlider">
+          <figure>
+            <img src="images/songjeong1.jpg" alt="송정역" />
+            <figcaption>경성대에서 지하철을 타고 버스로 환승한 뒤 3분 정도 걸으면 나오는 '송정역'이다. 아침에 가서 그런지 사람이 거의 없었다...</figcaption>
+          </figure>
+          <figure>
+            <img src="images/songjeong2.jpg" alt="송정역 기차 사진" />
+            <figcaption>기차도 탑승해 보고 싶었지만 오픈시간까지 많이 기다려야해서 어쩔 수 없이 다른 장소로 발걸음을 옮겼다...</figcaption>
+          </figure>
+          <!-- 사진과 캡션 계속 이어짐 -->
+        </div>
+        <button class="slider-btn right" onclick="slideGallery(1)">›</button>
       </div>
+    </section>
 
     <section id="map">
-      <h2>송정 위치 지도</h2>
+      <h2>지도</h2>
+      <p>아래는 부산 송정 지역의 주요 여행지 위치입니다.</p>
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.5820380279897!2d129.20305631524502!3d35.179524865898774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed2e47e5e185%3A0x50b82699846fd024!2z7ISc6rCV7J207Yuw7J6Q!5e0!3m2!1sko!2skr!4v1624438772897!5m2!1sko!2skr"
+        src="https://www.google.com/maps/d/embed?mid=1FnhcUlXYbf1pJlBOVb90ulB4Zf8&hl=ko"
         width="100%"
-        height="300"
+        height="400"
         style="border:0;"
         allowfullscreen=""
         loading="lazy"
-      ></iframe>
-    </section>
-
-    <section id="tips">
-      <h2>여행 팁</h2>
-      <ul>
-        <li>🕒 오전 방문 추천</li>
-        <li>🚌 대중교통 이용 용이</li>
-        <li>🌤️ 여름엔 자외선 차단 필수</li>
-        <li>🚗 해동용궁사 갈 때는 자차 필수!</li>
-      </ul>
-    </section>
-
-    <section id="comments">
-      <h2>댓글 남기기</h2>
-      <form id="commentForm">
-        <input type="text" id="username" placeholder="이름" required />
-        <textarea id="commentText" placeholder="댓글을 입력하세요" required></textarea>
-        <button type="submit">등록</button>
-      </form>
-      <div id="commentList"></div>
-    </section>
-
-    <section id="download">
-      <h2>발표 자료 다운로드</h2>
-      <a href="presentation.pdf" download>📥 발표 요약 PDF 파일 받기</a>
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Minji's Travel Journal</p>
-  </footer>
-
   <script>
-    const form = document.getElementById('commentForm');
-    const commentList = document.getElementById('commentList');
+    const gallerySlider = document.getElementById('gallerySlider');
+    let currentIndex = 0;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('username').value;
-      const text = document.getElementById('commentText').value;
-
-      const comment = document.createElement('div');
-      comment.className = 'comment';
-      comment.innerHTML = <strong>${name}</strong><p>${text}</p>;
-
-      commentList.prepend(comment);
-      form.reset();
-    });
+    function slideGallery(direction) {
+      const totalSlides = gallerySlider.children.length;
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = 0;
+      if (currentIndex >= totalSlides) currentIndex = totalSlides -1;
+      gallerySlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
   </script>
 </body>
-</html>   
+</html>
+
