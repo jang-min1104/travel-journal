@@ -2,192 +2,249 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>여행일기 – 송정&기장편</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>송정 여행 홈페이지</title>
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #fdfdfd;
+      font-family: '맑은 고딕', Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f9f9f9;
       color: #333;
       line-height: 1.6;
     }
-
-    header {
-      background: #2b7a78;
-      color: white;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
+    /* 상단 네비게이션 바 */
     nav {
-      background: #def2f1;
-      padding: 0.5rem 1rem;
+      background: #005fa3;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-
     nav ul {
+      margin: 0;
+      padding: 0.5em 1em;
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
       justify-content: center;
-      margin: 0;
-      padding: 0;
+      gap: 1.5em;
     }
-
-    nav a {
+    nav ul li {
+      display: inline;
+    }
+    nav ul li a {
+      color: white;
       text-decoration: none;
-      color: #17252a;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5em 0.7em;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 4px;
+    }
+    nav ul li a:hover,
+    nav ul li a:focus {
+      background: #007acc;
+      color: #fff;
+      outline: none;
     }
 
+    header {
+      background-color: #007acc;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
     main {
-      padding: 2rem 1rem;
-      max-width: 1000px;
-      margin: auto;
+      max-width: 900px;
+      margin: 2em auto;
+      padding: 0 1em;
     }
-
     section {
-      margin-bottom: 3rem;
+      margin-bottom: 3em;
+      background: white;
+      padding: 1.5em 2em;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
-
     h2 {
-      border-bottom: 2px solid #3aafa9;
-      padding-bottom: 0.5rem;
-      color: #2b7a78;
+      color: #007acc;
+      margin-bottom: 0.8em;
+      border-bottom: 2px solid #007acc;
+      padding-bottom: 0.2em;
     }
-
     ul {
-      padding-left: 1.5rem;
+      padding-left: 1.2em;
     }
-
-    /* 갤러리 슬라이더 스타일 */
+    a.download-link {
+      display: inline-block;
+      background: #007acc;
+      color: white;
+      padding: 0.5em 1em;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    a.download-link:hover {
+      background: #005fa3;
+    }
+    /* 갤러리 스타일 */
     .gallery-wrapper {
       position: relative;
       overflow: hidden;
-    }
-
-    .gallery-track {
-      display: flex;
-      transition: transform 0.3s ease-in-out;
-      gap: 12px;
-    }
-
-    .gallery-track figure {
-      min-width: 250px;
-      flex-shrink: 0;
-      background: #fff;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 8px;
-    }
-
-    .gallery-track img {
-      width: 100%;
-      height: 130px;
-      object-fit: cover;
       border-radius: 8px;
-      margin-bottom: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      background: white;
     }
-
-    .gallery-track figcaption {
-      font-size: 0.9rem;
+    .gallery-slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      scroll-behavior: smooth;
+    }
+    figure {
+      min-width: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      overflow: hidden;
+    }
+    figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid #eee;
+    }
+    figcaption {
+      padding: 1em;
+      font-size: 1rem;
       color: #555;
-      line-height: 1.2;
+      line-height: 1.4;
+      min-height: 90px;
     }
-
-    .slider-button {
+    .slider-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(43, 122, 120, 0.8);
-      color: white;
+      background: rgba(0,0,0,0.3);
       border: none;
-      font-size: 1.5rem;
-      padding: 0.5rem;
+      color: white;
+      font-size: 2em;
+      width: 40px;
+      height: 60px;
       cursor: pointer;
-      border-radius: 50%;
+      user-select: none;
+      border-radius: 4px;
+      transition: background 0.3s;
       z-index: 10;
     }
-
-    .slider-button.prev {
-      left: 0.5rem;
+    .slider-btn:hover {
+      background: rgba(0,0,0,0.6);
+    }
+    .slider-btn.left {
+      left: 0.5em;
+    }
+    .slider-btn.right {
+      right: 0.5em;
+    }
+    @media (max-width: 600px) {
+      figcaption {
+        font-size: 0.9rem;
+        padding: 0.8em;
+        min-height: auto;
+      }
+      .slider-btn {
+        font-size: 1.5em;
+        width: 30px;
+        height: 45px;
+      }
     }
 
-    .slider-button.next {
-      right: 0.5rem;
-    }
-
-    form {
+    /* 섹션별 이동 버튼 스타일 */
+    .section-nav-buttons {
+      margin-bottom: 1em;
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.7em;
+      flex-wrap: wrap;
     }
-
-    input, textarea {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      background: #3aafa9;
-      color: white;
+    .section-nav-buttons button {
+      background: #007acc;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment {
-      margin-top: 1rem;
-      padding: 0.5rem;
-      border-left: 4px solid #3aafa9;
-      background: #f1f1f1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #2b7a78;
       color: white;
+      padding: 0.5em 1em;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .section-nav-buttons button:hover,
+    .section-nav-buttons button:focus {
+      background: #005fa3;
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>여행일기: 송정&기장편</h1>
-    <p>바다, 철길, 그리고 추억이 있는 곳</p>
-  </header>
-
+  <!-- 네비게이션 바 추가 -->
   <nav>
     <ul>
-      <li><a href="#course">여행 코스</a></li>
-      <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#intro">소개글</a></li>
+      <li><a href="#travel-course">여행 코스</a></li>
+      <li><a href="#travel-tips">여행 팁</a></li>
+      <li><a href="#ppt-download">PPT 다운로드</a></li>
+      <li><a href="#gallery">여행 일기</a></li>
       <li><a href="#map">지도</a></li>
-      <li><a href="#tips">여행 팁</a></li>
-      <li><a href="#comments">댓글</a></li>
-      <li><a href="#download">다운로드</a></li>
     </ul>
   </nav>
 
+  <header>
+    <h1>송정 여행 홈페이지</h1>
+  </header>
+
   <main>
-    <section id="course">
+    <section id="intro">
+      <h2>홈페이지 소개글</h2>
+      <div class="section-nav-buttons">
+        <button onclick="location.href='#travel-course'">다음: 여행 코스</button>
+        <button onclick="location.href='#gallery'">여행 일기로 이동</button>
+      </div>
+      <p>이 홈페이지는 부산 송정 지역을 방문한 경험을 바탕으로 만든 여행 기록 공간입니다. 송정의 아름다운 명소들과 여행 팁, 그리고 여행 코스를 소개하며 직접 찍은 사진과 여행 일기를 통해 여러분께 송정의 매력을 전하고자 합니다.</p>
+    </section>
+
+    <section id="travel-course">
       <h2>여행 코스</h2>
+      <div class="section-nav-buttons">
+        <button onclick="location.href='#intro'">소개글로 이동</button>
+        <button onclick="location.href='#travel-tips'">다음: 여행 팁</button>
+      </div>
       <ul>
-        <li>📍 송정해수욕장</li>
-        <li>🚶‍♀️ 송정 철길</li>
-        <li>🍜 맛집 탐방</li>
-        <li>⛩️ 송정 해동용궁사</li>
+        <li>송정역 방문 및 해변 산책</li>
+        <li>해동용궁사 탐방</li>
+        <li>문토스트 본점 방문</li>
+        <li>송정해수욕장 주변 카페 및 맛집 탐방</li>
       </ul>
+    </section>
+
+    <section id="travel-tips">
+      <h2>여행 팁</h2>
+      <div class="section-nav-buttons">
+        <button onclick="location.href='#travel-course'">여행 코스로 이동</button>
+        <button onclick="location.href='#ppt-download'">다음: PPT 다운로드</button>
+      </div>
+      <ul>
+        <li>해동용궁사 방문 시, 버스나 자차 이용을 권장합니다. 도보는 오르막과 더위 때문에 매우 힘듭니다.</li>
+        <li>송정역은 아침 일찍 방문하면 한적한 풍경을 즐길 수 있습니다.</li>
+        <li>해변 일출 사진을 찍고 싶다면 새벽 7시경 방문을 추천합니다.</li>
+        <li>문토스트는 맛과 사장님의 친절함으로 유명하니 꼭 들러보세요.</li>
+      </ul>
+    </section>
+
+    <section id="ppt-download">
+      <h2>PPT 다운로드</h2>
+      <div class="section-nav-buttons">
+        <button onclick="location.href='#travel-tips'">여행 팁으로 이동</button>
+        <button onclick="location.href='#gallery'">다음: 여행 일기</button>
+      </div>
+      <a href="files/songjeong_trip_presentation.pptx" class="download-link" download>여행 발표 PPT 다운로드</a>
     </section>
 
     <section id="gallery">
@@ -255,79 +312,64 @@
           <figcaption>사장님이 매우 친절하십니다. 오픈 시간이 아니었지만 혹시나 해서 찾아갔는데 영업중이라 하셔서 사장님과 재미있는 이야기도 나누고 맛있는 토스트와 주스를 마시고 왔습니다. 문토스트 송정 본점이 유명한 까닭을 알게 되는 시간이었습니다. </figcaption>
         </figure>
       </div>
+<div style="margin-top: 2em;">
+  <h3>댓글을 남겨보세요</h3>
+  <form id="commentForm">
+    <input
+      type="text"
+      id="commentInput"
+      placeholder="댓글을 입력하세요"
+      required
+      style="width: 70%; padding: 0.5em; margin-right: 0.5em; border-radius: 5px; border: 1px solid #ccc;"
+    />
+    <button
+      type="submit"
+      style="padding: 0.5em 1em; background: #007acc; color: white; border: none; border-radius: 5px; cursor: pointer;"
+    >
+      등록
+    </button>
+  </form>
+  <ul id="commentList" style="margin-top: 1em; padding-left: 1em;"></ul>
+</div>
+
+
+      
+        </div>
+        <button class="slider-btn right" onclick="slideGallery(1)">›</button>
+      </div>
     </section>
 
     <section id="map">
       <h2>송정 위치 지도</h2>
+      <div class="section-nav-buttons">
+        <button onclick="location.href='#gallery'">여행 일기로 이동</button>
+        <button onclick="location.href='#intro'">처음으로 돌아가기</button>
+      </div>
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!..."
-        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </section>
-
-    <section id="tips">
-      <h2>여행 팁</h2>
-      <ul>
-        <li>🕒 오전 방문 추천</li>
-        <li>🚌 대중교통 이용 용이</li>
-        <li>🌤️ 여름엔 자외선 차단 필수</li>
-        <li>🚗 해동용궁사 갈 때는 자차 필수!</li>
-      </ul>
-    </section>
-
-    <section id="comments">
-      <h2>댓글 남기기</h2>
-      <form id="commentForm">
-        <input type="text" id="username" placeholder="이름" required />
-        <textarea id="commentText" placeholder="댓글을 입력하세요" required></textarea>
-        <button type="submit">등록</button>
-      </form>
-      <div id="commentList"></div>
-    </section>
-
-    <section id="download">
-      <h2>발표 자료 다운로드</h2>
-      <a href="presentation.pdf" download>📥 발표 요약 PDF 파일 받기</a>
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.5820380279897!2d129.20305631524502!3d35.179524865898774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed2e47e5e185%3A0x50b82699846fd024!2z7ISc6rCV7J207Yuw7J6Q!5e0!3m2!1sko!2skr!4v1624438772897!5m2!1sko!2skr"
+        width="100%"
+        height="300"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Minji's Travel Journal</p>
-  </footer>
-
   <script>
-    // 댓글 기능
-    const form = document.getElementById('commentForm');
-    const commentList = document.getElementById('commentList');
+    const gallerySlider = document.getElementById('gallerySlider');
+    const totalSlides = gallerySlider.children.length;
+    let currentIndex = 0;
 
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const name = document.getElementById('username').value;
-      const text = document.getElementById('commentText').value;
-
-      const comment = document.createElement('div');
-      comment.className = 'comment';
-      comment.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
-
-      commentList.prepend(comment);
-      form.reset();
-    });
-
-    // 슬라이더 기능
-    const track = document.querySelector('.gallery-track');
-    const prevBtn = document.querySelector('.slider-button.prev');
-    const nextBtn = document.querySelector('.slider-button.next');
-    let scrollAmount = 0;
-    const slideWidth = 260; // 각 슬라이드 너비 + 여백
-
-    prevBtn.addEventListener('click', () => {
-      scrollAmount -= slideWidth;
-      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', () => {
-      scrollAmount += slideWidth;
-      track.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-    });
+    function slideGallery(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) {
+        currentIndex = totalSlides - 1;
+      } else if (currentIndex >= totalSlides) {
+        currentIndex = 0;
+      }
+      gallerySlider.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
   </script>
 </body>
 </html>
