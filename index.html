@@ -67,87 +67,41 @@
       padding-left: 1.5rem;
     }
 
-    /* 갤러리 가로형 카드 스타일 */
+    /* 갤러리 스타일 - 가로형 */
     .gallery-grid {
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
 
-    .gallery-grid figure {
+    .horizontal-figure {
       display: flex;
-      flex-direction: row;
-      align-items: flex-start;
       gap: 16px;
-      padding: 16px;
+      align-items: flex-start;
       background: #fff;
-      border-radius: 12px;
+      border-radius: 10px;
+      padding: 12px;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s ease;
     }
 
-    .gallery-grid figure:hover {
+    .horizontal-figure:hover {
       transform: translateY(-4px);
     }
 
-    .gallery-grid img {
-      width: 250px;
-      height: auto;
+    .horizontal-figure img {
+      width: 200px;
+      height: 140px;
       object-fit: cover;
-      border-radius: 10px;
+      border-radius: 8px;
       flex-shrink: 0;
     }
 
-    .gallery-grid figcaption {
-      font-size: 1rem;
-      color: #222;
-      line-height: 1.6;
-      text-align: left;
-      max-width: 100%;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    input, textarea {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      resize: vertical;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      background: #3aafa9;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background: #2b7a78;
-    }
-
-    .comment {
-      margin-top: 1rem;
-      padding: 0.5rem;
-      border-left: 4px solid #3aafa9;
-      background: #f1f1f1;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #2b7a78;
-      color: white;
-      font-size: 0.9rem;
+    .horizontal-figure figcaption {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #444;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -169,81 +123,30 @@
   </nav>
 
   <main>
-    <section id="course">
-      <h2>여행 코스</h2>
-      <ul>
-        <li>📍 송정해수욕장</li>
-        <li>🚶‍♀️ 송정 철길</li>
-        <li>🍜 맛집 탐방</li>
-        <li>⛩️ 송정 해동용궁사</li>
-      </ul>
-    </section>
-
     <section id="gallery">
       <h2>갤러리</h2>
       <div class="gallery-grid">
-        <!-- figure 요소 반복: 이미지 + 설명 (왼쪽-오른쪽 구조) -->
-        <figure>
-          <img src="images/songjeong1.jpg" alt="송정역">
-          <figcaption>경성대에서 지하철을 타고 버스로 환승한 뒤 3분 정도 걸으면 나오는 '송정역'이다. 아침에 가서 그런지 사람이 거의 없었다...</figcaption>
+        <figure class="horizontal-figure">
+          <img src="images/songjeong1.jpg" alt="송정역" />
+          <figcaption>
+            경성대에서 지하철을 타고 버스로 환승한 뒤 3분 정도 걸으면 나오는 '송정역'이다. 아침에 가서 그런지 사람이 거의 없었다.
+          </figcaption>
         </figure>
-        <!-- 필요한 만큼 figure 반복 -->
+        <figure class="horizontal-figure">
+          <img src="images/songjeong2.jpg" alt="기차 사진" />
+          <figcaption>
+            기차도 타보고 싶었지만 오픈시간이 늦어 다른 장소로 이동했다. 가격은 8,000~12,000원.
+          </figcaption>
+        </figure>
+        <figure class="horizontal-figure">
+          <img src="images/songjeong3.jpg" alt="바다로 달려가는 모습" />
+          <figcaption>
+            날씨만 좋았으면 정말 멋진 사진이 나왔을 듯. 포토샵은 참았음.
+          </figcaption>
+        </figure>
       </div>
     </section>
-
-    <section id="map">
-      <h2>송정 위치 지도</h2>
-      <iframe src="https://www.google.com/maps/embed?..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </section>
-
-    <section id="tips">
-      <h2>여행 팁</h2>
-      <ul>
-        <li>🕒 오전 방문 추천</li>
-        <li>🚌 대중교통 이용 용이</li>
-        <li>🌤️ 여름엔 자외선 차단 필수</li>
-        <li>🚗 해동용궁사 갈 때는 자차 필수!</li>
-      </ul>
-    </section>
-
-    <section id="comments">
-      <h2>댓글 남기기</h2>
-      <form id="commentForm">
-        <input type="text" id="username" placeholder="이름" required />
-        <textarea id="commentText" rows="3" placeholder="댓글을 입력하세요" required></textarea>
-        <button type="submit">댓글 등록</button>
-      </form>
-      <div id="commentList"></div>
-    </section>
-
-    <section id="download">
-      <h2>자료 다운로드</h2>
-      <p><a href="songjeong_travel.zip" download>송정 여행 자료 다운로드</a></p>
-    </section>
   </main>
-
-  <footer>
-    &copy; 2025 송정 여행일기. All rights reserved.
-  </footer>
-
-  <script>
-    const form = document.getElementById('commentForm');
-    const commentList = document.getElementById('commentList');
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const username = document.getElementById('username').value.trim();
-      const commentText = document.getElementById('commentText').value.trim();
-      if (!username || !commentText) return;
-
-      const commentDiv = document.createElement('div');
-      commentDiv.className = 'comment';
-      commentDiv.innerHTML = `<strong>${username}</strong>: ${commentText}`;
-
-      commentList.appendChild(commentDiv);
-      form.reset();
-    });
-  </script>
 </body>
 </html>
 
