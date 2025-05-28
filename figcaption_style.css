@@ -1,0 +1,9 @@
+
+figcaption {
+  padding: 1em;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  min-height: auto; /* 기존 90px 대신 자동 높이 */
+  /* 필요시 max-height 및 overflow 속성 추가 가능 */
+}
