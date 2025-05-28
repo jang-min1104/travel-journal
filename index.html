@@ -103,12 +103,20 @@
       flex-shrink: 0;
     }
 
+    /* 이미지 설명 가독성 개선 */
     .gallery-grid figcaption {
-      font-size: 0.9rem;
-      color: #555;
-      line-height: 1.3;
-      white-space: normal;
+      font-size: 1rem; /* 약간 키움 */
+      color: #222; /* 진한 글자색 */
+      line-height: 1.5; /* 넉넉한 행간 */
+      background: rgba(255, 255, 255, 0.85); /* 연한 흰 배경 */
+      padding: 10px 12px; /* 충분한 여백 */
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
+      white-space: normal;
+      margin-top: 6px;
+      font-weight: 400;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     /* 댓글 폼 및 댓글 스타일 */
@@ -246,30 +254,34 @@
     <section id="map">
       <h2>송정 위치 지도</h2>
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.5820380279897!2d129.20305631524502!3d35.179524865898774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed2e47e5e185%3A0x50b82699846fd024!2z7ISc6rCV7J207Yuw7J6Q!5e0!3m2!1sko!2skr!4v1624438772897!5m2!1sko!2skr"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.5820380279897!2d129.1905395152599!3d35.19573918029279!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ee86a42ce5d7%3A0x66ee93b03e9eb4a8!2z7J6Q64qUIO2VnOydtCDsl7zrprzsnpzsnbzsnbzshLjsnYQg7IK87J6E7J6k64qUIOydtCDsmKzsnrAsIO2lpe2VmOyXrOyLoA!5e0!3m2!1sko!2skr!4v1685263536859!5m2!1sko!2skr"
         width="100%"
-        height="300"
-        style="border:0;"
+        height="400"
+        style="border: 0"
         allowfullscreen=""
         loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="송정 위치 지도"
       ></iframe>
     </section>
 
     <section id="tips">
       <h2>여행 팁</h2>
       <ul>
-        <li>🕒 오전 방문 추천</li>
-        <li>🚌 대중교통 이용 용이</li>
-        <li>🌤️ 여름엔 자외선 차단 필수</li>
-        <li>🚗 해동용궁사 갈 때는 자차 필수!</li>
+        <li>해동용궁사는 걸어서 올라가기 힘드니 버스나 자가용 이용 추천</li>
+        <li>송정역 주변 기차탑승은 가격이 조금 높은 편</li>
+        <li>일출 시간에 방문하면 멋진 사진 촬영 가능</li>
+        <li>문토스트 송정 본점은 꼭 방문해 볼 만함</li>
       </ul>
     </section>
 
     <section id="comments">
       <h2>댓글 남기기</h2>
       <form id="commentForm">
-        <input type="text" id="username" placeholder="이름" required />
-        <textarea id="commentText" rows="3" placeholder="댓글을 입력하세요" required></textarea>
+        <label for="name">이름:</label>
+        <input type="text" id="name" name="name" required />
+        <label for="comment">댓글:</label>
+        <textarea id="comment" name="comment" rows="3" required></textarea>
         <button type="submit">댓글 등록</button>
       </form>
       <div id="commentList"></div>
@@ -277,31 +289,32 @@
 
     <section id="download">
       <h2>자료 다운로드</h2>
-      <p><a href="songjeong_travel.zip" download>송정 여행 자료 다운로드</a></p>
+      <p>여행 사진과 지도 자료를 압축 파일로 다운로드 받을 수 있습니다.</p>
+      <a href="files/songjeong_photos.zip" download>📥 송정 여행 사진 다운로드</a><br />
+      <a href="files/songjeong_map.pdf" download>📥 송정 지도 PDF 다운로드</a>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 송정 여행일기. All rights reserved.
+    <p>© 2025 송정 여행 일기. All rights reserved.</p>
   </footer>
 
   <script>
+    // 댓글 기능 간단 구현 (새로고침 시 초기화됨)
     const form = document.getElementById('commentForm');
     const commentList = document.getElementById('commentList');
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const username = document.getElementById('username').value.trim();
-      const commentText = document.getElementById('commentText').value.trim();
-      if (!username || !commentText) return;
-
-      const commentDiv = document.createElement('div');
-      commentDiv.className = 'comment';
-      commentDiv.innerHTML = `<strong>${username}</strong>: ${commentText}`;
-
-      commentList.appendChild(commentDiv);
-
-      form.reset();
+      const name = form.name.value.trim();
+      const comment = form.comment.value.trim();
+      if(name && comment) {
+        const div = document.createElement('div');
+        div.classList.add('comment');
+        div.textContent = `${name}: ${comment}`;
+        commentList.prepend(div);
+        form.reset();
+      }
     });
   </script>
 </body>
