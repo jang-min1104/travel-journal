@@ -235,11 +235,12 @@
     function slideGallery(direction) {
       const totalSlides = gallerySlider.children.length;
       currentIndex += direction;
-      if (currentIndex < 0) currentIndex = 0;
-      if (currentIndex >= totalSlides) currentIndex = totalSlides -1;
+      if (currentIndex < 0) currentIndex = totalSlides - 1; // 처음에서 왼쪽 넘어가면 마지막으로
+      if (currentIndex >= totalSlides) currentIndex = 0;    // 마지막에서 오른쪽 넘어가면 처음으로
       gallerySlider.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
   </script>
 </body>
 </html>
+
 
