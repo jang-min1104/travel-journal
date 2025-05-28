@@ -1,0 +1,88 @@
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fefefe;
+  color: #333;
+}
+
+header {
+  background-color: #0077cc;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+#gallery {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.gallery-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery-slider {
+  display: flex;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+figure {
+  min-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+figcaption {
+  padding: 1em;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  min-height: 110px;
+  word-wrap: break-word;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.3);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.2rem 0.8rem;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+
+.slider-btn.left {
+  left: 10px;
+}
+
+.slider-btn.right {
+  right: 10px;
+}
