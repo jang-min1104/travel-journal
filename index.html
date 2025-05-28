@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>여행일기 – 송정편</title>
+  <title>여행일기 – 송정&기장편</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -166,7 +166,6 @@
 
     <section id="gallery">
       <h2>갤러리</h2>
-      <button class="slide-btn prev-btn">◀</button>
       <div class="gallery-grid">
         <figure>
           <img src="images/image1.jpg" alt="송정역" />
@@ -222,8 +221,6 @@
           <figcaption>사장님이 매우 친절하십니다. 오픈 시간이 아니었지만 혹시나 해서 찾아갔는데 영업중이라 하셔서 사장님과 재미있는 이야기도 나누고 맛있는 토스트와 주스를 마시고 왔습니다. 문토스트 송정 본점이 유명한 까닭을 알게 되는 시간이었습니다. </figcaption>
         </figure>
       </div>
-      <button class="slide-btn next-btn">▶</button>
-</section>
 
     <section id="map">
       <h2>송정 위치 지도</h2>
@@ -268,35 +265,21 @@
   </footer>
 
   <script>
-  const form = document.getElementById('commentForm');
-  const commentList = document.getElementById('commentList');
+    const form = document.getElementById('commentForm');
+    const commentList = document.getElementById('commentList');
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const name = document.getElementById('username').value;
-    const text = document.getElementById('commentText').value;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('username').value;
+      const text = document.getElementById('commentText').value;
 
-    const comment = document.createElement('div');
-    comment.className = 'comment';
-    comment.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      comment.innerHTML = <strong>${name}</strong><p>${text}</p>;
 
-    commentList.prepend(comment);
-    form.reset();
-  });
-
-  const gallery = document.querySelector('.gallery-grid');
-  const prevBtn = document.querySelector('.prev-btn');
-  const nextBtn = document.querySelector('.next-btn');
-
-  const scrollAmount = 200;  // 한번에 스크롤되는 거리(px)
-
-  prevBtn.addEventListener('click', () => {
-    gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-  });
-
-  nextBtn.addEventListener('click', () => {
-    gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  });
-</script>
+      commentList.prepend(comment);
+      form.reset();
+    });
+  </script>
 </body>
 </html>   
