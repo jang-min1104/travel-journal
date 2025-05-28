@@ -1,0 +1,105 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #3b82f6;
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+nav ul {
+  background: #2563eb;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0.5rem;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  display: block;
+}
+
+main {
+  padding: 1.5rem;
+}
+
+section {
+  margin-bottom: 3rem;
+}
+
+.main-img {
+  width: 100%;
+  max-width: 600px;
+  display: block;
+  margin: auto;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input, textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.comment {
+  background: #eef;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+}
+
+footer {
+  background: #1e40af;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+  }
+
+  .main-img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>여행일기 – 송정편</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>여행일기: 송정편</h1>
+    <p>바다, 철길, 그리고 추억이 있는 곳</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#course">여행 코스</a></li>
+      <li><a href="#gallery">갤러리</a></li>
+      <li><a href="#map">지도</a></li>
+      <li><a href="#tips">여행 팁</a></li>
+      <li><a href="#comments">댓글</a></li>
+      <li><a href="#download">다운로드</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="course">
+      <h2>여행 코스</h2>
+      <ul>
+        <li>📍 송정해수욕장</li>
+        <li>🚶‍♀️ 송정 철길</li>
+        <li>🍜 맛집 탐방</li>
+      </ul>
+    </section>
+
+    <section id="gallery">
+      <h2>갤러리</h2>
+      <img src="images/main.jpg" alt="송정해수욕장" class="main-img" />
+    </section>
+
+    <section id="map">
+      <h2>송정 위치 지도</h2>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3263.5820380279897!2d129.20305631524502!3d35.179524865898774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3568ed2e47e5e185%3A0x50b82699846fd024!2z7ISc6rCV7J207Yuw7J6Q!5e0!3m2!1sko!2skr!4v1624438772897!5m2!1sko!2skr"
+        width="100%"
+        height="300"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </section>
+
+    <section id="tips">
+      <h2>여행 팁</h2>
+      <ul>
+        <li>🕒 오전 방문 추천</li>
+        <li>🚌 대중교통 이용 용이</li>
+        <li>🌤️ 여름엔 자외선 차단 필수</li>
+      </ul>
+    </section>
+
+    <section id="comments">
+      <h2>댓글 남기기</h2>
+      <form id="commentForm">
+        <input type="text" id="username" placeholder="이름" required />
+        <textarea id="commentText" placeholder="댓글을 입력하세요" required></textarea>
+        <button type="submit">등록</button>
+      </form>
+      <div id="commentList"></div>
+    </section>
+
+    <section id="download">
+      <h2>발표 자료 다운로드</h2>
+      <a href="presentation.pdf" download>📥 발표 요약 PDF 파일 받기</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Minji's Travel Journal</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('commentForm');
+    const commentList = document.getElementById('commentList');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('username').value;
+      const text = document.getElementById('commentText').value;
+
+      const comment = document.createElement('div');
+      comment.className = 'comment';
+      comment.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+      commentList.prepend(comment);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
